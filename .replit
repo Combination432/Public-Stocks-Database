@@ -1,0 +1,19 @@
+# Replit configuration file
+run = "bash start.sh"
+entrypoint = "backend/app/main.py"
+modules = ["python-3.11", "nodejs-20"]
+
+[nix]
+channel = "stable-23_05"
+
+[deployment]
+run = ["bash", "start.sh"]
+deploymentTarget = "cloudrun"
+
+[env]
+PYTHONPATH = "${PYTHONPATH}:${REPL_HOME}/backend"
+PATH = "${PATH}:${REPL_HOME}/node_modules/.bin"
+
+[[ports]]
+localPort = 8000
+externalPort = 80
