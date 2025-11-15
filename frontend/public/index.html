@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>US Financial Statement Database</title>
+    <link rel="stylesheet" href="../src/css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>US Financial Statement Database</h1>
+            <p class="tagline">As-reported financial data from 10-K and 10-Q filings</p>
+        </header>
+
+        <!-- Search Section -->
+        <section class="search-section">
+            <div class="search-box">
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Search by ticker (e.g., AAPL) or company name..."
+                    autocomplete="off"
+                >
+                <button id="searchButton">Search</button>
+            </div>
+            <div id="searchResults" class="search-results hidden"></div>
+        </section>
+
+        <!-- Company Info Section -->
+        <section id="companySection" class="company-section hidden">
+            <div class="company-header">
+                <h2 id="companyName">Company Name</h2>
+                <div class="company-meta">
+                    <span id="companyTicker" class="ticker"></span>
+                    <span id="companyCIK" class="cik"></span>
+                    <span id="companyExchange" class="exchange"></span>
+                </div>
+            </div>
+
+            <!-- Period Selection -->
+            <div class="controls">
+                <div class="period-toggle">
+                    <button id="quarterlyBtn" class="active" data-period="quarterly">Quarterly</button>
+                    <button id="annualBtn" data-period="annual">Annual</button>
+                </div>
+                <div class="period-selector">
+                    <label for="yearSelect">Year:</label>
+                    <select id="yearSelect"></select>
+                    <label for="quarterSelect" id="quarterLabel">Quarter:</label>
+                    <select id="quarterSelect">
+                        <option value="1">Q1</option>
+                        <option value="2">Q2</option>
+                        <option value="3">Q3</option>
+                        <option value="4">Q4</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Statement Tabs -->
+            <div class="tabs">
+                <button class="tab-button active" data-statement="income_statement">Income Statement</button>
+                <button class="tab-button" data-statement="balance_sheet">Balance Sheet</button>
+                <button class="tab-button" data-statement="cash_flow">Cash Flow</button>
+            </div>
+
+            <!-- Statement Table -->
+            <div class="statement-container">
+                <div class="statement-header">
+                    <h3 id="statementTitle">Income Statement</h3>
+                    <button id="exportButton" class="export-button">Export to CSV</button>
+                </div>
+                <div id="loadingIndicator" class="loading hidden">Loading...</div>
+                <div id="errorMessage" class="error hidden"></div>
+                <div id="statementTable" class="table-container"></div>
+            </div>
+        </section>
+
+        <footer>
+            <p>Data sourced from SEC EDGAR • All financial data is "as-reported" without normalization</p>
+        </footer>
+    </div>
+
+    <script src="../src/js/api.js"></script>
+    <script src="../src/js/app.js"></script>
+</body>
+</html>
